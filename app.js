@@ -34,20 +34,20 @@ var hco_visitasRoutes = require('./routes/hco_visitas');
 var dietasRoutes = require ('./routes/dietas');
 var rutinasRoutes = require('./routes/rutinas');
 var pagosRoutes = require('./routes/pagos');
-/*
+
 //CONEXION A LA BASE DE DATOS
 mongoose.connection.openUri('mongodb://raul:raulmtz1@ds111993.mlab.com:11993/evotecbd' , (err , res)=>{
     if(err) throw err;
     console.log('Base de datos MongoDB : \x1b[32m%s\x1b[0m' , 'Online');   
 });
-*/
+/*
 //CONEXION LOCAL A LA BASE DE DATOS 
 mongoose.connection.openUri('mongodb://localhost:27017/EvotecLocal' , (err , res)=>{
     if(err) throw err;
     console.log('Base de datos MongoDB : \x1b[32m%s\x1b[0m' , 'Online');   
 });
 //--------------------------------------
-
+*/
 
 
 //Rutas
@@ -68,6 +68,6 @@ app.use('/' , appRoutes);
 
 //Escuchar peticiones
 
-app.listen(3000 , () => {
-    console.log('Express server puerto 3000 : \x1b[32m%s\x1b[0m' , 'Online');
+app.listen(process.env.PORT || 4000 , () => {
+    console.log('Express server : \x1b[32m%s\x1b[0m' , 'Online');
 });
