@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var Usuario = require ('../models/usuario');
+var Cliente = require ('../models/cliente');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var midAuth = require('../middlerwares/auth');
@@ -21,6 +22,7 @@ app.get('/', (req , res , next) =>{
             });
         }
         res.status(200).json({
+            
             ok : true ,
             mensaje : 'Usuarios',
             usuarios : usuarios
@@ -31,7 +33,7 @@ app.get('/', (req , res , next) =>{
 //==============================================
 //Crear un nuevo usuario
 //==============================================
-app.post ('/',midAuth.verificaToken, (req , res) => {
+app.post ('/',(req , res) => {
     var body  = req.body;
     var usuario = new Usuario({
         nombre : body.nombre,
@@ -40,6 +42,8 @@ app.post ('/',midAuth.verificaToken, (req , res) => {
         img : body.img ,
         role : body.role
     });
+   
+    
 
     usuario.save( (err , usuarioGuardado) =>{
         if (err) {
@@ -49,14 +53,50 @@ app.post ('/',midAuth.verificaToken, (req , res) => {
                  errors: err
              });
          }
-         res.status(201).json({
-            ok : true ,
-             usuario:usuarioGuardado,
-             usuariotoken : req.usuario
-        });
+         if(body.role === 'USER_ROLE'){
+             console.log('Usuario semi-creado');
+             console.log('El usuario es :'+usuarioGuardado._id);
+            // altaCliente(usuarioGuardado._id,body , res , res);
+            var now = new Date();
+            var cliente = new Cliente({
+                nombre : body.nombre,
+                apellidoP : body.apellidoP,
+                apellidoM: body.apellidoM,
+                domicilio : body.domicilio,
+                telefono : body.telefono,
+                fechaAlta : now,
+                fechaVencimiento : body.fechaVencimiento,
+                img : body.img,
+                estatus : body.estatus,
+                usuario:usuarioGuardado.id
+            });
+            cliente.save( (err , clienteGuardado) =>{
+                if (err) {
+                    return res.status(400).json({
+                         ok : false ,
+                         mensaje : 'Error al crear cliente',
+                         errors: err
+                     });
+                 }
+                 
+                    res.status(201).json({
+                        ok : true ,
+                         cliente:clienteGuardado,
+                         clientetoken : req.cliente
+                    });
+                 
+            });//FIN DEL GUARDADO
+            //-*-------------------------------------------------
+         }else{
+            res.status(201).json({
+                ok : true ,
+                 usuario:usuarioGuardado,
+                 usuariotoken : req.usuario
+            });
+         }
+         
     });  
 });
-
 
 
 //==============================================

@@ -20,3 +20,18 @@ exports.verificaToken = function(req,res,next){
     });
 }
 
+
+exports.verificaADMIN_ROLE = function(req,res,next){
+    
+    var usuario = req.usuario;
+    if(usuario.role === 'ROLE'){
+        next();
+        return;
+    }else{
+        return res.status(401).json({
+            ok : false ,
+            mensaje : 'Token incorrecto',
+            errors: err
+        });
+    }
+}
