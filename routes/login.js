@@ -167,8 +167,8 @@ function obtenerMenu(ROLE){
                     { titulo: 'rutinas', url: '/rutinas' },
                 ]
               },{
-                titulo: 'Instrcutores',
-                icono: 'mdi mdi-user',
+                titulo: 'Instructores',
+                icono: 'mdi mdi-account-star-variant',
                 submenu: [
                   
                     { titulo: 'instructores', url: '/instructores' },
