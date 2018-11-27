@@ -3,10 +3,28 @@ var app = express();
 var instructor = require ('../models/instructor');
 //Rutas
 app.get('/', (req , res , next) =>{
-    res.status(200).json({
-        ok : true ,
-        mensaje : 'Peticion Realizada Correctamente'
-    });
+
+    
+    instructor.find({  } )
+        
+        .exec(
+         (err, clientes) => {
+        if (err) {
+           return res.status(500).json({
+                ok : false ,
+                mensaje : 'Error cargando instructores',
+                errors: err
+            });
+        }
+            res.status(200).json({
+                ok : true ,
+                mensaje : 'Instructores',
+                instructores : clientes,
+               
+            });
+       
+       
+    })
 });
 //==============================================
 //Crear un nuevo instructor
