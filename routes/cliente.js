@@ -65,7 +65,7 @@ app.put ('/actualizarEstado/:id',(req , res) => {
     var body  = req.body;
     var id = req.params.id;
     var now = new Date();
-    var fechaNueva = now.getDay +  '/' + now.getMonth + '/' +now.getFullYear;
+    var fechaNueva = now.getDay() +  '/' + now.getMonth() + '/' +now.getFullYear();
     var estadoI = new estadoIN({
         peso : body.peso,
         IMC : body.IMC,
