@@ -9,6 +9,7 @@ var estadoclienteINSchema =	new Schema({
                 cintura: {	type: String	},
                 gluteo: {	type: String	},
                 muslo: {	type: String	},
+                fecha : {type:String},
                 img: {	type: String,	required: false },
                 usuario:{ type: Schema.Types.ObjectId,ref:'Usuario'}
 },	{	collection: 'estadoclienteIN' });

@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var Cliente = require ('../models/cliente');
 var estadoACT = require ('../models/estadoclienteACT');
+var estadoIN = require('../models/estadoclienteIN');
 var midAuth = require('../middlerwares/auth');
 
 
@@ -63,7 +64,19 @@ app.get('/estadoACT/:id', (req , res , next) =>{
 app.put ('/actualizarEstado/:id',(req , res) => {
     var body  = req.body;
     var id = req.params.id;
-   
+    var now = new Date();
+    var estadoI = new estadoIN({
+        peso : body.peso,
+        IMC : body.IMC,
+        estatura : body.estatura,
+        pecho : body.pecho,
+        brazo :  body.brazo,
+        cintura : body.cintura,
+        gluteo : body.gluteo,
+        muslo : body.muslo,
+        usuario : id ,
+        fecha : now
+    });
     
     estadoACT.findOne({usuario:id} , (err , state)=>{
         if (err) {
@@ -95,12 +108,21 @@ app.put ('/actualizarEstado/:id',(req , res) => {
                          errors: err
                      });
                  }
-                 
+                 estadoI.save((err, state)=>{
+                    if(err){
+                        return res.status(400).json({
+                            ok : false ,
+                            mensaje : 'Error al crear estado',
+                            errors: err
+                        });
+                    }
                     res.status(201).json({
                         ok : true ,
                          cliente:state
                     });
+                 });
                  
+                    
             });//FIN DEL GUARDADO
         }else{
             state.peso = body.peso;
@@ -121,11 +143,19 @@ app.put ('/actualizarEstado/:id',(req , res) => {
                      errors: err
                  });
              }
-             res.status(201).json({
-                ok : true ,
-                 cliente:clienteGuardado,
-                 clienteToken : req.cliente
-            });
+             estadoI.save((err, state)=>{
+                if(err){
+                    return res.status(400).json({
+                        ok : false ,
+                        mensaje : 'Error al crear estado',
+                        errors: err
+                    });
+                }
+                res.status(201).json({
+                    ok : true ,
+                     cliente:state
+                });
+             });
         }); 
         } //FIN ELSE
     });
