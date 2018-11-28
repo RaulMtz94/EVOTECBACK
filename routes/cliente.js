@@ -64,8 +64,9 @@ app.get('/estadoACT/:id', (req , res , next) =>{
 app.put ('/actualizarEstado/:id',(req , res) => {
     var body  = req.body;
     var id = req.params.id;
-    var now = new Date();
-    var fechaNueva = now.getDay() +  '/' + now.getMonth() + '/' +now.getFullYear();
+    var fecha = new Date();
+    var month = ((fecha.getMonth() + 1) < 10) ? '0' + (fecha.getMonth() + 1) : (fecha.getMonth() + 1);
+
     var estadoI = new estadoIN({
         peso : body.peso,
         IMC : body.IMC,
@@ -76,7 +77,7 @@ app.put ('/actualizarEstado/:id',(req , res) => {
         gluteo : body.gluteo,
         muslo : body.muslo,
         usuario : id ,
-        fecha : fechaNueva
+        fecha : fecha.getDay() +'/'+ month +'/'+ fecha.getFullYear(),
     });
     
     estadoACT.findOne({usuario:id} , (err , state)=>{
