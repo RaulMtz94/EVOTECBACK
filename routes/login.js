@@ -196,6 +196,14 @@ function obtenerMenu(ROLE){
                     ]
                   },
                   {
+                    titulo: 'Mi Evolucion',
+                    icono: 'mdi mdi-wallet-membership',
+                    submenu: [
+                      { titulo: 'Ver mi evolucion', url: '/evolucion' },
+                     
+                    ]
+                  },
+                  {
                     titulo: 'Servicios',
                     icono: 'mdi mdi-library-books',
                     submenu: [
