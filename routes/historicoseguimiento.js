@@ -4,7 +4,12 @@ var estado = require('../models/estadoclienteIN');
 //Rutas
 app.get('/:busqueda', (req , res , next) =>{
     var busqueda = req.params.busqueda;
-    estado.find({usuario : busqueda} , (err , progreso)=>{
+    estado.find({usuario : busqueda} ,)
+        .sort({fecha:'ascending'})
+        .exec(
+        
+        (err , progreso)=>{
+        
         if (err) {
             return res.status(500).json({
                  ok : false ,
