@@ -77,7 +77,7 @@ app.put ('/actualizarEstado/:id',(req , res) => {
         gluteo : body.gluteo,
         muslo : body.muslo,
         usuario : id ,
-        fecha : fecha.getDay() +'/'+ month +'/'+ fecha.getFullYear(),
+        fecha : fecha.getDate() +'/'+ month +'/'+ fecha.getFullYear(),
     });
     
     estadoACT.findOne({usuario:id} , (err , state)=>{
