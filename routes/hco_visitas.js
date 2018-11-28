@@ -39,7 +39,7 @@ app.post ('/',(req , res) => {
     //instancia del historico
     var historico = new hco_visitas({
         nombre : body.nombre , 
-        fecha : fecha.getDate() +'/'+ month +'/'+ fecha.getFullYear(),
+        fecha : fecha.getDay() +'/'+ fecha.getMonth() +'/'+ fecha.getFullYear(),
         socio : body.socio,
         monto : body.monto,
         correo : body.correo,
