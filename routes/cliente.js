@@ -142,7 +142,7 @@ app.put ('/actualizarEstado/:id',(req , res) => {
                      mensaje : 'Error al subir estado de cliente',
                      errors: err
                  });
-             }
+             } 
              estadoI.save((err, state)=>{
                 if(err){
                     return res.status(400).json({
