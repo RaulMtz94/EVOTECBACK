@@ -225,7 +225,7 @@ function obtenerMenu(ROLE){
             titulo: 'Visitas GYM',
             icono: 'fa fa-calendar',
             submenu: [
-              
+                  
                 { titulo: 'Registrar visita', url: '/hco_visitas' },
                 {titulo : 'Historico visitas'  , url: '/historico'}
             ]
