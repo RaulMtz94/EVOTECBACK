@@ -219,7 +219,19 @@ function obtenerMenu(ROLE){
                            ]
                   }
             ];
-      }
+      }else if(ROLE === 'CAJERO_ROLE'){
+        var menu = [
+          {
+            titulo: 'Visitas GYM',
+            icono: 'fa fa-calendar',
+            submenu: [
+              
+                { titulo: 'Registrar visita', url: '/hco_visitas' },
+                {titulo : 'Historico visitas'  , url: '/historico'}
+            ]
+          },
+        ];
+  }
 
     return menu;
 }
