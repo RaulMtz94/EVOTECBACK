@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 //controlar roles
 var rolesValidos = {
-    values: ['ADMIN_ROLE','USER_ROLE'],
+    values: ['ADMIN_ROLE','USER_ROLE','CAJERO'],
     message:'{VALUE} no es un rol permitido'
 };
 
