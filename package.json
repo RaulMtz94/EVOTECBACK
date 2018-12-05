@@ -1,6 +1,9 @@
 {
   "name": "evotec-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.3.0"
+  },
   "description": "Servidor backend Evotec",
   "main": "index.js",
   "scripts": {
