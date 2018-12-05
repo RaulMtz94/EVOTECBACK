@@ -35,6 +35,8 @@ var dietasRoutes = require ('./routes/dietas');
 var rutinasRoutes = require('./routes/rutinas');
 var pagosRoutes = require('./routes/pagos');
 var instructoresRoutes = require('./routes/instructores');
+var historicoseguimientoRoutes = require('./routes/historicoseguimiento');
+var cajeroRoutes = require('./routes/cajero')
 
 //CONEXION A LA BASE DE DATOS
 mongoose.connection.openUri('mongodb://raul:raulmtz1@ds111993.mlab.com:11993/evotecbd' , (err , res)=>{
@@ -63,6 +65,9 @@ app.use('/dietas' , dietasRoutes);
 app.use('/rutinas' , rutinasRoutes);
 app.use('/pagos' , pagosRoutes);
 app.use('/instructores' , instructoresRoutes);
+app.use('/historico' , historicoseguimientoRoutes);
+app.use('/cajero' , cajeroRoutes);
+
 
 
 //Todas las rutas deben estar por encima de esta ruta para que no la tomen como parametro
