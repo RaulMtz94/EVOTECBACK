@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 //inicializar variables
 var app = express();
-
+ 
 //Habilitando CORS
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
